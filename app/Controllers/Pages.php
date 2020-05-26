@@ -4,7 +4,7 @@ class Pages extends BaseController
 {
 	public function index()
 	{
-		echo 'Hello World';
+		echo view('Pages/index');
 	}
 
 	//--------------------------------------------------------------------
