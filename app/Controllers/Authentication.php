@@ -4,17 +4,16 @@ class Authentication extends BaseController
 {
 	public function login()
 	{
-		echo 'Hello World';
+		helper('form');
+		echo view('Authentication/login');
 	}
 
 	public function register()
 	{
-		echo 'Hello World';
 	}
 
 	public function logout()
 	{
-		echo 'Hello World';
 	}
 	//--------------------------------------------------------------------
 
