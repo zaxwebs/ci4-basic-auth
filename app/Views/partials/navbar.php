@@ -6,19 +6,14 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
-          <li class="nav-item active">
-            <a class="nav-link" href="#">Home
-              <span class="sr-only">(current)</span>
-            </a>
+          <li class="nav-item">
+					<?= anchor('/', 'Home', 'class="nav-link"') ?>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">About</a>
+						<?= anchor('/login', 'Login', 'class="nav-link"') ?>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Services</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Contact</a>
+						<?= anchor('/register', 'Register', 'class="nav-link"') ?>
           </li>
         </ul>
       </div>
