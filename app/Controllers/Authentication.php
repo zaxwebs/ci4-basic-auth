@@ -26,6 +26,7 @@ class Authentication extends BaseController
             $messages = [
                 'email' => [
                     'required' => 'Please enter an email.',
+                    'valid_email' => 'Please enter a valid email.',
                     'is_unique' => 'That email has already been taken. Please enter another.',
                 ],
                 'password' => [

@@ -18,11 +18,11 @@
 <body>
 
   <!-- Navigation -->
-	<?= $this->include('partials/navbar') ?>
+	<?=$this->include('_navbar')?>
 
   <!-- Page Content -->
-	<?= $this->renderSection('content') ?>
-  
+	<?=$this->renderSection('content')?>
+
 
   <!-- Bootstrap core JavaScript -->
 	<script src="assets/js/jquery.min.js"></script>
