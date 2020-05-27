@@ -12,7 +12,8 @@ class User extends Model
 
   protected $allowedFields = ['name', 'password'];
 
-  protected $useTimestamps = true;
+	protected $useTimestamps = true;
+	
   protected $createdField  = 'created_at';
   protected $updatedField  = 'updated_at';
   protected $deletedField  = 'deleted_at';
@@ -20,7 +21,6 @@ class User extends Model
   protected $validationRules    = [
 			'email'        => 'required|valid_email|is_unique[users.email]',
 			'password'     => 'required|min_length[8]',
-			'password_confirm' => 'required|matches[password]',
 	];
 
 	protected $validationMessages = [
@@ -31,10 +31,6 @@ class User extends Model
 			'password'     => [
 				'required' => 'Please enter a password.',
 				'min_length' => 'Please enter a password with at least {param} characters.'
-			],
-			'password_confirm'     => [
-				'required' => 'Please confirm password.',
-				'matches' => 'Passwords did not match.'
 			],
 	];
 
