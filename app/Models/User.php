@@ -10,7 +10,7 @@ class User extends Model
     protected $returnType = 'array';
     protected $useSoftDeletes = true;
 
-    protected $allowedFields = ['name', 'password'];
+    protected $allowedFields = ['email', 'password'];
 
     protected $useTimestamps = true;
 
@@ -26,7 +26,7 @@ class User extends Model
     protected $validationMessages = [
         'email' => [
             'required' => 'Please enter an email.',
-            'valid_email' => 'Please enter a valid email.',  
+            'valid_email' => 'Please enter a valid email.',
             'is_unique' => 'That email has already been taken. Please enter another.',
         ],
         'password' => [

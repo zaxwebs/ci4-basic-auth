@@ -43,7 +43,21 @@ class Authentication extends BaseController
                 return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
             }
 
-            return redirect()->to('/register');
+            // Attempt to save the user to DB
+            $user = model('User');
+
+            // TODO: Hash password
+
+            $data = [
+                'email' => $email,
+                'password' => $password,
+            ];
+
+            if (!$user->save($data)) {
+                return redirect()->back()->withInput()->with('errors', $user->errors());
+            } else {
+                return redirect()->back()->withInput()->with('success', 'Your account has been created.');
+            }
         }
 
         echo view('Authentication/register');
