@@ -10,10 +10,14 @@
 	</div>
 <?php endif?>
 
-<?php if (session()->has('errors')): ?>
-	<div class="alert alert-danger">
-		<?php foreach (session('errors') as $error): ?>
-			<li><?=$error?></li>
-		<?php endforeach?>
-	</div>
-<?php endif?>
+<?php if (session()->has('errors')) {
+    echo '<div class="alert alert-danger">';
+    if (count(session('errors')) === 1) {
+        echo array_values(session('errors'))[0];
+    } else {
+        foreach (session('errors') as $error) {
+            echo '<li>' . $error . '</li>';
+        }
+    }
+    echo '</div>';
+}
