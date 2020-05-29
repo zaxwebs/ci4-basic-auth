@@ -56,7 +56,8 @@ class Authentication extends BaseController
             if (!$user->save($data)) {
                 return redirect()->back()->withInput()->with('errors', $user->errors());
             } else {
-                return redirect()->back()->withInput()->with('success', 'Your account has been created.');
+                // exclude withInput()
+                return redirect()->back()->with('success', 'Your account has been created.');
             }
         }
 
