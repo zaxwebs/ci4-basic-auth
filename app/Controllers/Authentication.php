@@ -2,9 +2,42 @@
 
 class Authentication extends BaseController
 {
+    protected $auth;
+
     public function login()
     {
         helper('form');
+
+        if ($this->request->getMethod() === 'post') {
+            $email = $this->request->getPost('email');
+            $password = $this->request->getPost('password');
+
+            $rules = [
+                'email' => 'required',
+                'password' => 'required',
+            ];
+
+            $messages = [
+                'email' => [
+                    'required' => 'Please enter your email.',
+                ],
+                'password' => [
+                    'required' => 'Please enter your password.',
+                ],
+            ];
+
+            if (!$this->validate($rules, $messages)) {
+                return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
+            }
+
+            //TODO: Hash password
+
+            //TODO: Check if email exists
+
+            //TODO: Check if user with provided email and password exist
+
+        }
+
         echo view('Authentication/login');
     }
 
@@ -57,6 +90,7 @@ class Authentication extends BaseController
                 return redirect()->back()->withInput()->with('errors', $user->errors());
             } else {
                 // exclude withInput()
+                // this clears old() data
                 return redirect()->back()->with('success', 'Your account has been created.');
             }
         }
