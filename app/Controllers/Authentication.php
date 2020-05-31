@@ -32,9 +32,19 @@ class Authentication extends BaseController
 
             //TODO: Hash password
 
-            //TODO: Check if email exists
+            // Check if email exists
+            $user = model('User');
 
-            //TODO: Check if user with provided email and password exist
+            if (!$user->where(['email' => $email])->first()) {
+                return redirect()->back()->withInput()->with('error', 'This email isn\'t registered.');
+            }
+
+            // Check if user with provided email and password exist
+            if (!$user->where(['email' => $email, 'password' => $password])->first()) {
+                return redirect()->back()->withInput()->with('error', 'Wrong email & password combination. Try again.');
+            }
+
+            //TODO: Log in
 
         }
 
