@@ -4,6 +4,11 @@ class Authentication extends BaseController
 {
     protected $auth;
 
+    public function __construct()
+    {
+        $this->auth = service('auth');
+    }
+
     public function login()
     {
         helper('form');
@@ -40,12 +45,16 @@ class Authentication extends BaseController
             }
 
             // Check if user with provided email and password exist
-            if (!$user->where(['email' => $email, 'password' => $password])->first()) {
+            $id = $user->where(['email' => $email, 'password' => $password])->first()['id'];
+
+            if (!$id) {
                 return redirect()->back()->withInput()->with('error', 'Wrong email & password combination. Try again.');
             }
 
-            //TODO: Log in
+            // TODO: Log in
+            $this->auth->login($id);
 
+            return redirect()->to('/restricted')->with('success', 'You have logged in successfully.');
         }
 
         echo view('Authentication/login');
