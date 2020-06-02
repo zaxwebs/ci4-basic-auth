@@ -119,6 +119,9 @@ class Authentication extends BaseController
 
     public function logout()
     {
+        // TODO: Check if logged
+        $this->auth->logout();
+        return redirect()->to('/')->with('success', 'You have been logged out successfully.');
     }
     //--------------------------------------------------------------------
 
