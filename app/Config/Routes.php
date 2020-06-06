@@ -37,10 +37,11 @@ $routes->group('/', ['filter' => 'logged-in'], function ($routes) {
 });
 
 $routes->get('logout', 'Authentication::logout');
-$routes->match(['get', 'post'], 'login', 'Authentication::login');
-$routes->match(['get', 'post'], 'register', 'Authentication::register');
 
-//$routes->get('/dashboard', 'Pages::dashboard', ['filter' => 'logged-in']);
+$routes->get('login', 'Authentication::login');
+$routes->post('login', 'Authentication::attemptLogin');
+$routes->get('register', 'Authentication::register');
+$routes->post('register', 'Authentication::attemptRegister');
 
 /**
  * --------------------------------------------------------------------
