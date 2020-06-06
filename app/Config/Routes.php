@@ -43,6 +43,16 @@ $routes->post('login', 'Authentication::attemptLogin');
 $routes->get('register', 'Authentication::register');
 $routes->post('register', 'Authentication::attemptRegister');
 
+/*
+Alternatively, a logged-out filter can be utilized as well.
+
+$routes->group('/', ['filter' => 'logged-out], function ($routes) {
+$routes->get('login', 'Authentication::login');
+$routes->get('register', 'Authentication::register');
+});
+
+ */
+
 /**
  * --------------------------------------------------------------------
  * Additional Routing
