@@ -29,11 +29,18 @@ $routes->setAutoRoute(false);
 
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
+
 $routes->get('/', 'Pages::index');
-$routes->get('/restricted', 'Pages::restricted');
-$routes->get('/logout', 'Authentication::logout');
+
+$routes->group('/', ['filter' => 'logged-in'], function ($routes) {
+    $routes->get('dashboard', 'Pages::dashboard');
+});
+
+$routes->get('logout', 'Authentication::logout');
 $routes->match(['get', 'post'], 'login', 'Authentication::login');
 $routes->match(['get', 'post'], 'register', 'Authentication::register');
+
+//$routes->get('/dashboard', 'Pages::dashboard', ['filter' => 'logged-in']);
 
 /**
  * --------------------------------------------------------------------

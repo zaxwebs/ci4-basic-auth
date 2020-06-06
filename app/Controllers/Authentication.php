@@ -11,6 +11,10 @@ class Authentication extends BaseController
 
     public function login()
     {
+        if ($this->auth->logged()) {
+            return redirect('/');
+        }
+
         helper('form');
 
         if ($this->request->getMethod() === 'post') {
@@ -54,7 +58,7 @@ class Authentication extends BaseController
             // TODO: Log in
             $this->auth->login($id);
 
-            return redirect()->to('/restricted')->with('success', 'You have logged in successfully.');
+            return redirect()->to('/dashboard')->with('success', 'You have logged in successfully.');
         }
 
         echo view('Authentication/login');
@@ -119,7 +123,10 @@ class Authentication extends BaseController
 
     public function logout()
     {
-        // TODO: Check if logged
+        if (!$this->auth->logged()) {
+            return redirect('/');
+        }
+
         $this->auth->logout();
         return redirect()->to('/')->with('success', 'You have been logged out successfully.');
     }

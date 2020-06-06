@@ -7,9 +7,9 @@ class Pages extends BaseController
         echo view('Pages/index');
     }
 
-    public function restricted()
+    public function dashboard()
     {
-        echo view('Pages/restricted');
+        echo view('Pages/dashboard');
     }
 
     //--------------------------------------------------------------------
